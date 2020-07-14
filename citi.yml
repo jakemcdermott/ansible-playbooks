@@ -1,0 +1,9 @@
+---
+- hosts: all
+  gather_facts: no
+  strategy: free
+  
+  tasks:
+    - include_tasks: looper-tasks.yml
+      loop: '{{ range(0,1000)|list }}'
+

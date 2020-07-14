@@ -1,0 +1,6 @@
+---
+- raw: whoami
+  changed_when: false
+- debug:
+    msg: 'test'
+
