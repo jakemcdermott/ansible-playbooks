@@ -9,12 +9,12 @@
 
   - name: "Facts - input"
     set_fact: new1={{ test }}
-    when: input_variable is defined
+    when: input_variable|bool
     delegate_to: localhost
 
   - name: "Facts - input"
     set_fact: new1='nope'
-    when: input_variable is not defined
+    when: not input_variable|bool
     delegate_to: localhost
 
   - name: "Debug - input"
