@@ -1,6 +1,37 @@
----
-
-- hosts: all
+- hosts: localhost
+  gather_facts: no
+  vars:
+    test: testvalue
+    local_variable: localvalue
   tasks:
-    - name: 'Fail if not run with --check'
-      shell: 'exit 1'
+
+  - name: "Facts - input"
+    set_fact:
+      new1: >-
+        {{ '{{ test }}' if input_variable else 'nope' }}
+    delegate_to: localhost
+  - name: "Debug - input"
+    debug:
+      var: new1
+    delegate_to: localhost
+
+  - name: "Facts - extra"
+    set_fact:
+      new2: >-
+        {{ '{{ test }}' if extra_variable else 'nope' }}
+    delegate_to: localhost
+  - name: "Debug - extra"
+    debug:
+      var: new2
+    delegate_to: localhost
+
+  - name: "Facts - local"
+    set_fact:
+      new3: >-
+        {{ '{{ test }}' if local_variable else 'nope' }}
+    delegate_to: localhost
+  - name: "Debug - local"
+    debug:
+      var: new3
+    delegate_to: localhost
+
