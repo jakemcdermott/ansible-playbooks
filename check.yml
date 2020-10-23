@@ -9,7 +9,7 @@
   - name: "Facts - input"
     set_fact:
       new1: >-
-        {{ '{{ test }}' if input_variable else 'nope' }}
+        {{ '{{ test }}' if input_variable is defined else 'nope' }}
     delegate_to: localhost
   - name: "Debug - input"
     debug:
