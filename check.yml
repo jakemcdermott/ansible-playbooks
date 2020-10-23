@@ -7,10 +7,10 @@
   - debug:
       var: input_variable
   
-  - set_fact: should_do_thing=no
+  - set_fact: should_do_thing=yes
     when: input_variable is defined and input_variable != ''
 
-  - set_fact: should_do_thing=yes
+  - set_fact: should_do_thing=no
     when: input_variable is not defined or input_variable == ''
 
   - name: "Facts - input"
