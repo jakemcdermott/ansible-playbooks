@@ -6,11 +6,17 @@
   tasks:
   - debug:
       var: input_variable
+  
+  - set_fact: should_do_thing=no
+    when: input_variable is defined and input_variable != ''
+
+  - set_fact: should_do_thing=yes
+    when: input_variable is not defined or input_variable == ''
 
   - name: "Facts - input"
     set_fact:
       new1: >-
-        {{ '{{ test }}' if input_variable is defined and input_variable != '' else 'nope' }}
+        {{ '{{ test }}' if should_do_thing else 'nope' }}
     delegate_to: localhost
 
   - name: "Debug - input"
