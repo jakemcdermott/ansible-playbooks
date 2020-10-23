@@ -16,7 +16,7 @@
   - name: "Facts - input"
     set_fact:
       new1: >-
-        {{ '{{ test }}' if should_do_thing else 'nope' }}
+        {{ '{{ test }}' if should_do_thing|bool else 'nope' }}
     delegate_to: localhost
 
   - name: "Debug - input"
